@@ -13,15 +13,10 @@ module.exports =
   # Load Katex environment
   #
   loadKatex: ->
-    #script = document.createElement("script")
-    #script.addEventListener "load", () ->
-    #  configureKatex()
-    #script.type = "text/javascript";
     link = document.createElement("link")
-    link.href = "node_modules/katex/" # I need to include both the css and the fonts in the preview window
     try
-      ##script.src  = "node_modules/katex/katex.js"
-      ##document.getElementsByTagName("head")[0].appendChild(script)
+      link.href = 'assets/katex.min.css'
+      document.getElementsByTagName("head")[0].appendChild(link)
     finally
       return
     return

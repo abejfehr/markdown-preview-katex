@@ -14,9 +14,11 @@ current editor using the keymap `ctrl-shift-m`.
 
 ## Math Test
 
-$$
-\phi
-$$
+\[
+f(x) = \int_{-\infty}^\infty
+    \hat f(\xi)\,e^{2 \pi i \xi x}
+    \,d\xi
+\]
 
 ## Installation Instructions
 
