@@ -13,10 +13,10 @@ module.exports =
   # Load Katex environment
   #
   loadKatex: ->
-    script = document.createElement("script")
-    script.addEventListener "load", () ->
-      configureKatex()
-    script.type = "text/javascript";
+    #script = document.createElement("script")
+    #script.addEventListener "load", () ->
+    #  configureKatex()
+    #script.type = "text/javascript";
     link = document.createElement("link")
     link.href = "node_modules/katex/" # I need to include both the css and the fonts in the preview window
     try
@@ -36,21 +36,22 @@ module.exports =
   # TODO: Edit this so it works with Katex
   #
   mathProcessor: (domElements) ->
-    if MathJax?
-      MathJax.Hub.Queue ["Typeset", MathJax.Hub, domElements]
+    ##if MathJax?
+    ##  MathJax.Hub.Queue ["Typeset", MathJax.Hub, domElements]
+    #htmlContent = katex.renderToString(domElements);
     return
 
 #
 # Configure Katex environment. Similar to the TeX-AMS_HTML configuration with
 # a few unnessesary features stripped away
 #
-configureKatex = ->
-  MathJax.Hub.Config
-    jax: ["input/TeX","output/HTML-CSS"]
-    extensions: []
-    TeX:
-      extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
-    messageStyle: "none"
-    showMathMenu: false
-  MathJax.Hub.Configured()
-  return
+#configureKatex = ->
+  ##MathJax.Hub.Config
+  ##  jax: ["input/TeX","output/HTML-CSS"]
+  ##  extensions: []
+  ##  TeX:
+  ##    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  ##  messageStyle: "none"
+  ##  showMathMenu: false
+  ##MathJax.Hub.Configured()
+  #return

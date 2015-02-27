@@ -38,7 +38,7 @@ module.exports =
       ]
     enableLatexRenderingByDefault:
       type: 'boolean'
-      default: false
+      default: true
 
   activate: ->
     atom.commands.add 'atom-workspace',

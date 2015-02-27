@@ -13,7 +13,7 @@ UpdatePreview = require './update-preview'
 module.exports =
 class MarkdownPreviewView extends ScrollView
   @content: ->
-    @div class: 'markdown-preview native-key-bindings', tabindex: -1, =>
+    @div class: 'markdown-preview-katex native-key-bindings', tabindex: -1, =>
       # If you dont explicitly declare a class then the elements wont be created
       @div class: 'update-preview'
 
@@ -162,6 +162,7 @@ class MarkdownPreviewView extends ScrollView
         # be instanced in the constructor
         if !@updatePreview
           @updatePreview = new UpdatePreview(@find("div.update-preview")[0])
+          @updatePreview.update(html, @renderLaTeX)
         else
           @updatePreview.update(html, @renderLaTeX)
         @emitter.emit 'did-change-markdown'

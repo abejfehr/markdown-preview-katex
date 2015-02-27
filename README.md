@@ -12,6 +12,12 @@ current editor using the keymap `ctrl-shift-m`.
   Rendering of LaTeX equations in the preview pane can be toggled with
   `ctrl-shift-x`. Please see [LaTeX](LATEX.md) for more details.
 
+## Math Test
+
+$$
+\phi
+$$
+
 ## Installation Instructions
 
 1.  Search for **Markdown Preview with Katex** in the menu **File &rsaquo; Settings

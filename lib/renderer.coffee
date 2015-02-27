@@ -36,7 +36,7 @@ exports.toHTML = (text='', filePath, grammar, renderLaTeX, callback) ->
 render = (text, filePath, renderLaTeX, callback) ->
   roaster ?= require path.join(packagePath, 'node_modules/roaster/lib/roaster')
   options =
-    katex: renderLaTeX
+    mathjax: renderLaTeX
     sanitize: false
     breaks: atom.config.get('markdown-preview-katex.breakOnSingleNewline')
 
@@ -53,8 +53,6 @@ render = (text, filePath, renderLaTeX, callback) ->
 
 sanitize = (html) ->
   o = cheerio.load("<div>#{html}</div>")
-  # Do not remove Katex script delimited blocks
-  o("script:not([type^='math/tex'])").remove()
   attributesToRemove = [
     'onabort'
     'onblur'

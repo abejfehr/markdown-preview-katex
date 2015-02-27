@@ -20,7 +20,7 @@ describe "Markdown preview package", ->
     jasmine.attachToDOM(workspaceElement)
 
     waitsForPromise ->
-      atom.packages.activatePackage("markdown-preview")
+      atom.packages.activatePackage("markdown-preview-katex")
 
     waitsForPromise ->
       atom.packages.activatePackage('language-gfm')
@@ -39,7 +39,7 @@ describe "Markdown preview package", ->
   describe "when a preview has not been created for the file", ->
     it "displays a markdown preview in a split pane", ->
       waitsForPromise -> atom.workspace.open("subdir/file.markdown")
-      runs -> atom.commands.dispatch workspaceElement, 'markdown-preview:toggle'
+      runs -> atom.commands.dispatch workspaceElement, 'markdown-preview-katex:toggle'
       expectPreviewInSplitPane()
 
       runs ->
@@ -50,35 +50,35 @@ describe "Markdown preview package", ->
     describe "when the editor's path does not exist", ->
       it "splits the current pane to the right with a markdown preview for the file", ->
         waitsForPromise -> atom.workspace.open("new.markdown")
-        runs -> atom.commands.dispatch workspaceElement, 'markdown-preview:toggle'
+        runs -> atom.commands.dispatch workspaceElement, 'markdown-preview-katex:toggle'
         expectPreviewInSplitPane()
 
     describe "when the editor does not have a path", ->
       it "splits the current pane to the right with a markdown preview for the file", ->
         waitsForPromise -> atom.workspace.open("")
-        runs -> atom.commands.dispatch workspaceElement, 'markdown-preview:toggle'
+        runs -> atom.commands.dispatch workspaceElement, 'markdown-preview-katex:toggle'
         expectPreviewInSplitPane()
 
     describe "when the path contains a space", ->
       it "renders the preview", ->
         waitsForPromise -> atom.workspace.open("subdir/file with space.md")
-        runs -> atom.commands.dispatch workspaceElement, 'markdown-preview:toggle'
+        runs -> atom.commands.dispatch workspaceElement, 'markdown-preview-katex:toggle'
         expectPreviewInSplitPane()
 
     describe "when the path contains accented characters", ->
       it "renders the preview", ->
         waitsForPromise -> atom.workspace.open("subdir/áccéntéd.md")
-        runs -> atom.commands.dispatch workspaceElement, 'markdown-preview:toggle'
+        runs -> atom.commands.dispatch workspaceElement, 'markdown-preview-katex:toggle'
         expectPreviewInSplitPane()
 
   describe "when a preview has been created for the file", ->
     beforeEach ->
       waitsForPromise -> atom.workspace.open("subdir/file.markdown")
-      runs -> atom.commands.dispatch workspaceElement, 'markdown-preview:toggle'
+      runs -> atom.commands.dispatch workspaceElement, 'markdown-preview-katex:toggle'
       expectPreviewInSplitPane()
 
     it "closes the existing preview when toggle is triggered a second time on the editor", ->
-      atom.commands.dispatch workspaceElement, 'markdown-preview:toggle'
+      atom.commands.dispatch workspaceElement, 'markdown-preview-katex:toggle'
 
       [editorPane, previewPane] = atom.workspace.getPanes()
       expect(editorPane.isActive()).toBe true
@@ -88,7 +88,7 @@ describe "Markdown preview package", ->
       [editorPane, previewPane] = atom.workspace.getPanes()
       previewPane.activate()
 
-      atom.commands.dispatch workspaceElement, 'markdown-preview:toggle'
+      atom.commands.dispatch workspaceElement, 'markdown-preview-katex:toggle'
       expect(previewPane.getActiveItem()).toBeUndefined()
 
     describe "when the editor is modified", ->
@@ -98,8 +98,6 @@ describe "Markdown preview package", ->
 
         runs ->
           markdownEditor.setText("Hey!")
-
-        waitsFor "::onDidChangeMarkdown handler to be called", ->
           listener.callCount > 0
 
       describe "when the preview is in the active pane but is not the active item", ->
@@ -144,7 +142,7 @@ describe "Markdown preview package", ->
 
       describe "when the liveUpdate config is set to false", ->
         it "only re-renders the markdown when the editor is saved, not when the contents are modified", ->
-          atom.config.set 'markdown-preview.liveUpdate', false
+          atom.config.set 'markdown-preview-katex.liveUpdate', false
 
           didStopChangingHandler = jasmine.createSpy('didStopChangingHandler')
           atom.workspace.getActiveTextEditor().getBuffer().onDidStopChanging didStopChangingHandler
@@ -187,7 +185,7 @@ describe "Markdown preview package", ->
   describe "when the markdown preview view is requested by file URI", ->
     it "opens a preview editor and watches the file for changes", ->
       waitsForPromise "atom.workspace.open promise to be resolved", ->
-        atom.workspace.open("markdown-preview://#{atom.project.getDirectories()[0].resolve('subdir/file.markdown')}")
+        atom.workspace.open("markdown-preview-katex://#{atom.project.getDirectories()[0].resolve('subdir/file.markdown')}")
 
       runs ->
         preview = atom.workspace.getActivePaneItem()
@@ -201,14 +199,14 @@ describe "Markdown preview package", ->
 
   describe "when the editor's grammar it not enabled for preview", ->
     it "does not open the markdown preview", ->
-      atom.config.set('markdown-preview.grammars', [])
+      atom.config.set('markdown-preview-katex.grammars', [])
 
       waitsForPromise ->
         atom.workspace.open("subdir/file.markdown")
 
       runs ->
         spyOn(atom.workspace, 'open').andCallThrough()
-        atom.commands.dispatch workspaceElement, 'markdown-preview:toggle'
+        atom.commands.dispatch workspaceElement, 'markdown-preview-katex:toggle'
         expect(atom.workspace.open).not.toHaveBeenCalled()
 
   describe "when the editor's path changes on #win32 and #darwin", ->
@@ -216,7 +214,7 @@ describe "Markdown preview package", ->
       titleChangedCallback = jasmine.createSpy('titleChangedCallback')
 
       waitsForPromise -> atom.workspace.open("subdir/file.markdown")
-      runs -> atom.commands.dispatch workspaceElement, 'markdown-preview:toggle'
+      runs -> atom.commands.dispatch workspaceElement, 'markdown-preview-katex:toggle'
 
       expectPreviewInSplitPane()
 
@@ -245,7 +243,7 @@ describe "Markdown preview package", ->
         atom.workspace.open("subdir/simple.md")
 
       runs ->
-        atom.commands.dispatch workspaceElement, 'markdown-preview:copy-html'
+        atom.commands.dispatch workspaceElement, 'markdown-preview-katex:copy-html'
         expect(atom.clipboard.read()).toBe """
           <p><em>italic</em></p>
           <p><strong>bold</strong></p>
@@ -253,7 +251,7 @@ describe "Markdown preview package", ->
         """
 
         atom.workspace.getActiveTextEditor().setSelectedBufferRange [[0, 0], [1, 0]]
-        atom.commands.dispatch workspaceElement, 'markdown-preview:copy-html'
+        atom.commands.dispatch workspaceElement, 'markdown-preview-katex:copy-html'
         expect(atom.clipboard.read()).toBe """
           <p><em>italic</em></p>
         """
@@ -266,14 +264,14 @@ describe "Markdown preview package", ->
           atom.packages.activatePackage('language-ruby')
 
         waitsForPromise ->
-          atom.packages.activatePackage('markdown-preview')
+          atom.packages.activatePackage('markdown-preview-katex')
 
         waitsForPromise ->
           atom.workspace.open("subdir/file.markdown")
 
         runs ->
           workspaceElement = atom.views.getView(atom.workspace)
-          atom.commands.dispatch workspaceElement, 'markdown-preview:copy-html'
+          atom.commands.dispatch workspaceElement, 'markdown-preview-katex:copy-html'
           preview = $('<div>').append(atom.clipboard.read())
 
       describe "when the code block's fence name has a matching grammar", ->
@@ -298,7 +296,7 @@ describe "Markdown preview package", ->
   describe "sanitization", ->
     it "removes script tags and attributes that commonly contain inline scripts", ->
       waitsForPromise -> atom.workspace.open("subdir/evil.md")
-      runs -> atom.commands.dispatch workspaceElement, 'markdown-preview:toggle'
+      runs -> atom.commands.dispatch workspaceElement, 'markdown-preview-katex:toggle'
       expectPreviewInSplitPane()
 
       runs ->
@@ -312,7 +310,7 @@ describe "Markdown preview package", ->
 
     it "remove the first <!doctype> tag at the beginning of the file", ->
       waitsForPromise -> atom.workspace.open("subdir/doctype-tag.md")
-      runs -> atom.commands.dispatch workspaceElement, 'markdown-preview:toggle'
+      runs -> atom.commands.dispatch workspaceElement, 'markdown-preview-katex:toggle'
       expectPreviewInSplitPane()
 
       runs ->
@@ -324,7 +322,7 @@ describe "Markdown preview package", ->
   describe "when the markdown contains an <html> tag", ->
     it "does not throw an exception", ->
       waitsForPromise -> atom.workspace.open("subdir/html-tag.md")
-      runs -> atom.commands.dispatch workspaceElement, 'markdown-preview:toggle'
+      runs -> atom.commands.dispatch workspaceElement, 'markdown-preview-katex:toggle'
       expectPreviewInSplitPane()
 
       runs -> expect(preview[0].innerHTML).toBe "content"
@@ -332,7 +330,7 @@ describe "Markdown preview package", ->
   describe "when the markdown contains a <pre> tag", ->
     it "does not throw an exception", ->
       waitsForPromise -> atom.workspace.open("subdir/pre-tag.md")
-      runs -> atom.commands.dispatch workspaceElement, 'markdown-preview:toggle'
+      runs -> atom.commands.dispatch workspaceElement, 'markdown-preview-katex:toggle'
       expectPreviewInSplitPane()
 
       runs -> expect(preview.find('atom-text-editor')).toExist()
