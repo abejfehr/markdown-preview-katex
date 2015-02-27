@@ -13,12 +13,12 @@ module.exports =
   # Load Katex environment
   #
   loadKatex: ->
-    link = document.createElement("link")
-    try
-      link.href = 'assets/katex.min.css'
-      document.getElementsByTagName("head")[0].appendChild(link)
-    finally
-      return
+  #  link = document.createElement("link")
+  #  try
+  #    link.href = 'assets/katex.min.css'
+  #    document.getElementsByTagName("head")[0].appendChild(link)
+  #  finally
+  #    return
     return
 
   #
