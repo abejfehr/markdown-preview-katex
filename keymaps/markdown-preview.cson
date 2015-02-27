@@ -1,17 +1,3 @@
 'atom-workspace, atom-workspace atom-text-editor':
   'ctrl-M': 'markdown-preview-katex:toggle'
   'ctrl-X': 'markdown-preview-katex:toggle-render-latex'
-
-'.platform-darwin .markdown-preview-katex':
-  'cmd-+': 'markdown-preview-katex:zoom-in'
-  'cmd-=': 'markdown-preview-katex:zoom-in'
-  'cmd--': 'markdown-preview-katex:zoom-out'
-  'cmd-_': 'markdown-preview-katex:zoom-out'
-  'cmd-0': 'markdown-preview-katex:reset-zoom'
-
-'.platform-win32 .markdown-preview-katex, .platform-linux .markdown-preview-katex':
-  'ctrl-+': 'markdown-preview-katex:zoom-in'
-  'ctrl-=': 'markdown-preview-katex:zoom-in'
-  'ctrl--': 'markdown-preview-katex:zoom-out'
-  'ctrl-_': 'markdown-preview-katex:zoom-out'
-  'ctrl-0': 'markdown-preview-katex:reset-zoom'
