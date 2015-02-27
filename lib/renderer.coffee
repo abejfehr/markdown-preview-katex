@@ -6,7 +6,6 @@ Highlights = require 'highlights'
 {$} = require 'atom-space-pen-views'
 roaster = null # Defer until used
 {scopeForFenceName} = require './extension-helper'
-katexHelper = require './katex-helper'
 
 highlighter = null
 {resourcePath} = atom.getLoadSettings()

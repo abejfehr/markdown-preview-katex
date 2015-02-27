@@ -23,7 +23,6 @@
 "use strict"
 
 WrappedDomTree = require './wrapped-dom-tree'
-KatexHelper  = require './katex-helper'
 
 module.exports = class UpdatePreview
   # @param dom A DOM element object
@@ -58,6 +57,5 @@ module.exports = class UpdatePreview
         elm
       r.inserted = r.inserted.filter (elm) ->
         !!elm
-      KatexHelper.mathProcessor r.inserted
 
     return r

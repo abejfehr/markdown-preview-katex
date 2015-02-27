@@ -59,9 +59,6 @@ module.exports =
     atom.commands.add '.tree-view .file .name[data-name$=\\.ron]', 'markdown-preview-katex:preview-file', previewFile
     atom.commands.add '.tree-view .file .name[data-name$=\\.txt]', 'markdown-preview-katex:preview-file', previewFile
 
-    # Call to load Katex environment
-    require('./katex-helper').loadKatex();
-
     atom.workspace.addOpener (uriToOpen) ->
       try
         {protocol, host, pathname} = url.parse(uriToOpen)
