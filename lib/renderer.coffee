@@ -35,7 +35,7 @@ exports.toHTML = (text='', filePath, grammar, renderLaTeX, callback) ->
 render = (text, filePath, renderLaTeX, callback) ->
   roaster ?= require path.join(packagePath, 'node_modules/roaster/lib/roaster')
   options =
-    mathjax: renderLaTeX
+    katex: renderLaTeX
     sanitize: false
     breaks: atom.config.get('markdown-preview-katex.breakOnSingleNewline')
 
