@@ -6,9 +6,13 @@ Just a fork of [Markdown Preview Plus](https://github.com/atom/markdown-preview-
 current editor using the keymap `ctrl-shift-m`.
 
 ## Dependency-free LaTeX equation rendering
-  LaTeX equations in the source markdown are rendered in the preview pane.
-  Rendering of LaTeX equations in the preview pane can be toggled with
+
+LaTeX equations in the source markdown are rendered in the preview pane. Rendering of LaTeX equations in the preview pane can be toggled with
   `ctrl-shift-x`. Please see [LaTeX](LATEX.md) for more details.
+
+# Saving as PDF
+
+Only select websites and packages are able to export math with markdown. The best solution I've been able to find was [pandoc](http://johnmacfarlane.net/pandoc/).
 
 ## License
 
