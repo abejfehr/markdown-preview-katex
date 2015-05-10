@@ -2,7 +2,7 @@
 
 ![Markdown Preview with Math](https://raw.githubusercontent.com/abejfehr/markdown-preview-katex/master/imgs/preview.png)
 
-Just a fork of [Markdown Preview Plus](https://github.com/atom/markdown-preview-plus) that renders math with [KaTeX](http://khan.github.io/KaTeX/) instead of MathJax so it's not a pain to install. Shows the rendered HTML markdown to the right of the
+Just a fork of [Markdown Preview Plus](https://github.com/Galadirith/markdown-preview-plus) that renders math with [KaTeX](http://khan.github.io/KaTeX/) instead of MathJax so it's not a pain to install. Shows the rendered HTML markdown to the right of the
 current editor using the keymap `ctrl-shift-m`.
 
 ## Dependency-free LaTeX equation rendering
