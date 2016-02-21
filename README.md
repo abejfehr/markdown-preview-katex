@@ -1,3 +1,5 @@
+**NOTICE: This plugin is deprecated! Please use [this one](https://github.com/Galadirith/markdown-preview-plus) now, it's gotten better!**
+
 # Markdown Preview with Math
 
 ![Markdown Preview with Math](https://raw.githubusercontent.com/abejfehr/markdown-preview-katex/master/imgs/preview.png)
